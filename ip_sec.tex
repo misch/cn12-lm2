@@ -1,0 +1,27 @@
+\section[IP Sec]{IP Sec: The Security Architecture for the Internet Protocol}
+Die IP Security Architecture (IPSec) bietet Sicherheits-Features für einzelne Datenpakete. Ursprünglich wurde diese Architektur zur Verwendung in IPv6 konstruiert. Die IPSec-Architektur wurde aber auch in die bisherige IP-Version (IPv4) aufgenommen. IPSec enthält alle Sicherheitsmechanismen, die zur Implementierung von VPNs nötig sind. \newline
+Die IPSec-Architektur besteht aus verschiedenen Protokollen, die IP-Header-Erweiterungen beschreiben, die Sicherheitsmechanismen bereitstellen. Die Sicherheitsfunktionen für die einzelnen Pakete werden durch zwei Protokolle bereitgestellt:
+\paragraph{AH}
+Der Authentication Header stellt Datenintegrität und Authentizität sicher.
+\paragraph{ESP}
+Das Encapsulating Security Payload-Protokoll sorgt für Privacy mit Hilfe von Verschlüsselungsmechanismen.
+\newline
+\newline
+AH und ESP sind unabhängige Protokolle, sie separat oder miteinander kombiniert eingesetzt werden können.
+\subsection[ESP]{The Encapsulation Security Payload}
+Das ESP hat die Protokollnummer 50. Die Nutzdaten werden umfasst von einem ESP-Header und einem ESP-Trailer.
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width=0.50\textwidth]{figure_3_4.png}
+\end{figure}
+\newpage
+\subsubsection{ESP header}
+Der ESP-Header befindet sich zwischen IP- und TCP-/UDP-/...-Header. Er enthält einen sogenannten SPI (security parameter index), um die Sicherheits-Assoziation zu identifizieren, und eine Sequenznummer, die für jedes Datenpaket inkrementiert wird (Abwehr von Replay-Attacken).
+\subsubsection{ESP trailer}
+Der ESP-Trailer befindet sich hinter den Nutzdaten und ist, wie die Nutzdaten selbst, verschlüsselt. Der Trailer sorgt auch für das Padding (Auffüllen der Datenblöcke), das nötig ist, weil Verschlüsselungs-Algorithmen oft Datenblöcke von einer bestimmten Länge voraussetzen. Der Trailer enthält daher ein Feld, das die Länge des Paddings in Bits enthält (pad length field). Ein weiteres Feld des ESP-Trailers enthält die Protokoll-Nummer des nächsten Protokolls (z.B. IP oder ein ein nächstes IPSec-Protokoll)
+\subsection[AH]{The Authentication Header}
+Das AH-Protokoll hat die Nummer 51. Es dient dazu, ein Datenpaket zu authentifizieren, so dass das IPSec-Peer des Empfängers sicher sein kann, von wo das erhaltene Paket stammt. Auch die Datenintegrität ist gewährleistet, d.h. die Empfänger-Station kann überprüfen, dass kein Dritter das Paket während der Übertragung manipuliert hat. AH macht das durch das Berechnen von entsprechenden Authentifizierungs-Daten mit einer sicheren one-way Hash-Funktion. Da diese Berechnung mit Hilfe eines geheimen Schlüssels geschieht. Ein Angreifer, der den geheimen Schlüssel nicht kennt, ist nicht in der Lage, ein valides Datenpaket herauszufiltern oder zu authentifizieren. \newline Der AH-Header enthält ein Feld für den nächsten Header und codiert die Länge der Nutzdaten (nötig, da die Authentifizierungsdaten variabel sind in ihrer Länge). Wie der ESP-Header enthält auch der AH-Header einen SPI (Security Parameter Index) und eine Sequenznummer. Dahinter folgen dann die Authentifizierungsdaten (= der Wert der berechneten Hash-Funktion).
+\begin{figure}[!htb]
+	\centering
+		\includegraphics[width=0.50\textwidth]{ah_header.png}
+\end{figure}

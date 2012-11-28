@@ -1,0 +1,31 @@
+\section{Security and the Internet Protocol}
+Es gibt viele verschiedene Technologien, um die Kommunikation über das Internet sicherer zu machen. Viele davon sind aber an eine bestimmte Anwendung gekoppelt (in diesem Fall werden die Sicherheitsmechanismen auf dem Application Layer bereitgestellt).
+\paragraph{Beispiele}
+\begin{itemize}
+	\item PGP ("`Pretty Good Privacy"') für die Verschlüsselung von E-Mails und Browser-basierte Authentifizierung
+	\item SSL ("`Secure Sockets Layer"') für die Verschlüsselung des Datenverkehrt zwischen Web-Browser und Web-Server.
+\end{itemize}
+Natürlich ist das für grosse Firmen oder für einen ISP (Internet Service Provider) nicht geeignet, da morgen andere Applikationen über die heutigen Netzwerke laufen könnten.
+\subsection{Possible Threats in the Internet}
+VPNs müssen mindestens die folgenden drei Anforderungen erfüllen:
+\begin{itemize}
+	\item Authentication (Die Person, mit der man kommuniziert, ist die, für die sie sich ausgibt)
+	\item Confidentiality \& Privacy (Niemand soll den Datenverkehrt belauschen können)
+	\item Integrity (Daten dürfen während der Übertragung nicht verändert werden können)
+\end{itemize}
+\subsubsection{Spoofing}
+Beim Spoofing gibt sich ein Angreifer als jemand anderes aus, indem er Pakete mit einer entsprechenden IP-Source-Adresse statt der eigenen versieht. Es ist eine allgemeine Tatsache, dass eine IP-Source-Adresse nicht vertrauenswürdig ist.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.50\textwidth]{figure_2_3.png}
+\end{figure}
+\subsubsection{Session Hijacking / Man in the Middle Attack}
+Ein Hacker kann sich "`in die Mitte eines Kommunikationsweges setzen,"' und die Kommunikationspartner jeweils glauben lassen, er sei das Gegenüber. Er kann sämtliche Datenpakete filtern und manipulieren. Es reicht daher nicht aus, einen Kommunikations-partner \textit{einmal} zu identifizieren, sondern es sollte jede Datenquelle authentifiziert werden.
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.50\textwidth]{figure_2_4.png}
+\end{figure}
+\subsubsection{Electronic Eavesdropping}
+Ein grosser Teil der meisten Netzwerke basiert auf Ethernet LANs. Das Abhören solcher Ethernet-Leitungen ist einfach - noch ernster ist die Lage bei Wireless-LANs.
+In Ethernet-Netzwerken kann jeder angeschlossene Knoten jedes Paket lesen. Es ist eine Konvention, dass jeder Knoten nur die an ihn adressierten Pakete verarbeitet. Natürlich kann ein Gerät einfach konfiguriert werden, dass es alle Pakete "`sammmelt,"' über die Leitung verschickt werden. Physikalisch ist es nicht möglich, an einem anderen Standort im Netzwerk festzustellen, dass ein Gerät alle Pakete verarbeitet.
