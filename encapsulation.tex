@@ -16,4 +16,6 @@ Beispiele für VPNS auf dieser Ebene sind Integrated Services Digital Network (IS
 \end{itemize}
 
 \subsection{Network Layer VPNs (Layer 3)}
-... To do
+IP Pakete werden als Payload in ein anderes IP Paket verpackt(IP in IP, {\em IPIP}), dann versendet. Dass innere Paket kann dabei verschlüsselt werden und garantiert so Sicherheit, das äussere jedoch nicht. Der VPN Server dient dann als Interface, der den äusseren Header entfernt & das innere Paket entschlüsselt. 
+
+Firewalls können eingesetzt werden um verschlüsselte Verbindungen zu erzwingen. 
