@@ -1,2 +1,7 @@
 \section{Transport and Tunnel Mode}
-... To do
+Sowohl bei ESP als auch bei AH gibt es zwei Modi: transport mode und tunnel mode.
+\subsection{Transport Mode}
+Beim transport mode werden die Nutzdaten und ein Teil des IP-Headers verschlüsselt. Der IP-Header wird durch das Hinzufügen von neuen Feldern erweitert.\newline
+Dieser Modus ermöglicht die Verwendung von IPSec über eine End-zu-End-Verbindung.
+\subsection{Tunnel Mode}
+Im tunnel mode wird dem Paket ein komplett neuer IP-Header angefügt. Der Modus ist ideal zum Implementieren eines VPN-Tunnels. Sowohl AH als auch ESP können für einen IP-VPN-Tunnel verwendet werden. Tunneling packt das ursprüngliche IP-Paket ein (ESP) und fügt einen neuen IP-Header hinzu, der die Adresse des IPSec-Gateways enthält. Dieser Modus ermöglichet es, nicht-routbare IP-Adressen (oder andere Protokolle) über ein öffentliches Netzwerk übertragen, da die Adressen im inneren Header versteckt sind. Auch die ursprüngliche Netzwerk-Topologie wird versteckt (Privacy).
