@@ -3,6 +3,7 @@
 *.tcp
 *.toc
 *.tps
+*.pdf
 
 #ignoring linux specific stuff:
 *~
